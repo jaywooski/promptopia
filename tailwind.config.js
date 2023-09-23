@@ -17,4 +17,7 @@ module.exports = {
 		},
 	},
 	plugins: [],
+	// screens: {
+	// 	sm: "640px",
+	// },
 };
