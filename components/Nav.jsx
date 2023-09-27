@@ -5,18 +5,19 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-	const isUserLoggedIn = true;
+	// const isUserLoggedIn = true;
+	const { data: session } = useSession(); // use data and rename it to session... pulls info about user
 
 	const [providers, setProviders] = useState(null);
 	const [toggleDropdown, setToggleDropdown] = useState(false);
 
 	useEffect(() => {
-		const setProviders = async () => {
+		const setUpProviders = async () => {
 			const res = await getProviders();
 			setProviders(res);
 		};
 
-		setProviders();
+		setUpProviders();
 	}, []);
 
 	return (
@@ -34,7 +35,7 @@ const Nav = () => {
 
 			{/* Desktop Nav */}
 			<div className="sm:flex hidden">
-				{isUserLoggedIn ? (
+				{session?.user ? (
 					<div className="flex gap-3 md:gap-5">
 						<Link
 							href={"/create-prompt"}
@@ -52,7 +53,7 @@ const Nav = () => {
 						</button>
 						<Link href={"/profile"}>
 							<Image
-								src="/assets/images/logo.svg"
+								src={session?.user.image}
 								width={37}
 								height={37}
 								className="rounded-full"
@@ -77,12 +78,15 @@ const Nav = () => {
 				)}
 			</div>
 
+			{/* {alert(session?.user)} */}
+			{/* {alert(providers)} */}
+
 			{/* Mobile Nav */}
 			<div className="sm:hidden flex relative">
-				{isUserLoggedIn ? (
+				{session?.user ? (
 					<div className="flex">
 						<Image
-							src="/assets/images/logo.svg"
+							src={session?.user.image}
 							width={37}
 							height={37}
 							className="rounded-full"
