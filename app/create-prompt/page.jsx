@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
 
+/*  Sample prompt: You are a web developer. I'm going to submit you a snippet of code.
+*   You tell me how to make it more readable, efficient, and display any errors.
+*/
 const CreatePrompt = () => {
+	const router = useRouter();
+	const { data: session } = useSession();
+
 	const [submitting, setSubmitting] = useState(false);
 	const [post, setPost] = useState({
 		prompt: "",
