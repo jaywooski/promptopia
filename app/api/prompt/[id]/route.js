@@ -26,7 +26,7 @@ export const PATCH = async (req, { params }) => {
 
         if (!existingPrompt) return new Response("Prompt not found!", { status: 404 })
 
-        existingPrompt.propmt = prompt;
+        existingPrompt.prompt = prompt;
         existingPrompt.tag = tag
 
         await existingPrompt.save()

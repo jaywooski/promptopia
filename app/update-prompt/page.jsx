@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
 const EditPrompt = () => {
 	const router = useRouter();
-	const { data: session } = useSession();
 	const searchParams = useSearchParams(); // this NextJS hook allows you to search for params in your query
 	const promptId = searchParams.get("id");
 
@@ -29,17 +27,18 @@ const EditPrompt = () => {
 		if (promptId) getPromptDetails();
 	}, [promptId]);
 
-	const editPrompt = async (e) => {
+	const updatePrompt = async (e) => {
 		e.preventDefault();
 
 		setSubmitting(true);
 
+		if (!promptId) return alert("No prompt ID found!");
+
 		try {
-			const res = await fetch("/api/prompt/new", {
-				method: "POST",
+			const res = await fetch(`/api/prompt/${promptId}`, {
+				method: "PATCH",
 				body: JSON.stringify({
 					prompt: post.prompt,
-					userId: session?.user.id,
 					tag: post.tag,
 				}),
 			});
@@ -60,7 +59,7 @@ const EditPrompt = () => {
 			post={post}
 			setPost={setPost}
 			submitting={submitting}
-			handleSubmit={editPrompt}
+			handleSubmit={updatePrompt}
 		/>
 	);
 };
