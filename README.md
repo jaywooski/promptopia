@@ -36,7 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
  ## Features for Future
- I will be adding new features or using this as a reference project fo future nextjs projects and apps.
+ I will be adding new features or using this as a [reference project](https://youtu.be/wm5gMKuwSYk?si=wcdJmOeKD4lfGHtN) fo future nextjs projects and apps.
 
  ##  Implementations on my own! 
  I will be implementing the following new features on my own:
@@ -45,5 +45,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     - Search by tag
     - Search by username
  - Ability to click on tag to see similar prompts under that tag
- - Ability to view other users profiles
+ - Ability to view other users profiles 
+   - This one isn't working for me currently but I will revisit it later
 

@@ -13,7 +13,11 @@ export const GET = async (req, { params }) => {
         return new Response(JSON.stringify(prompt), { status: 200 });
 
     } catch (error) {
-        return new Response(JSON.stringify("Failed to get prompt"), { status: 500 })
+
+        // commenting it below to see if error is caused by stringifying the response
+        // return new Response(JSON.stringify("Failed to get prompt"), { status: 500 })
+        return new Response("Failed to get prompt!", { status: 500 })
+
     }
 }
 
